@@ -13,15 +13,15 @@ namespace WebClient.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            using (var _context = new IntecBookContext())
-            {
-                _context.Day.Add(new IntecBook.classes.Day()
-                {
-                    Id = 2,
-                    Name = "Lunes"
-                });
-                _context.SaveChanges();
-            }
+            //using (var _context = new IntecBookContext())
+            //{
+            //    _context.Day.Add(new IntecBook.classes.Day()
+            //    {
+            //        Id = 2,
+            //        Name = "Lunes"
+            //    });
+            //    _context.SaveChanges();
+            //}
             return View();
         }
     }
