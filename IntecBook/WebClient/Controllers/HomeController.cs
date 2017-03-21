@@ -13,15 +13,21 @@ namespace WebClient.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            //using (var _context = new IntecBookContext())
-            //{
-            //    _context.Day.Add(new IntecBook.classes.Day()
-            //    {
-            //        Id = 2,
-            //        Name = "Lunes"
-            //    });
-            //    _context.SaveChanges();
-            //}
+            using (var _context = new IntecBookContext())
+            {
+                var Days = new List<IntecBook.classes.Day>();
+                string[] WeekDays = { "Lunes","Martes", "Miercoles",
+                                    "Jueves", "Viernes", "Sabado"  };
+                for (int i = 0; i < 6; i++)
+                {
+                    Days.Add(new IntecBook.classes.Day
+                    {
+                        Name = WeekDays[i]
+                    });
+                }
+                _context.Day.AddRange(Days);
+                _context.SaveChanges();
+            }
             return View();
         }
     }

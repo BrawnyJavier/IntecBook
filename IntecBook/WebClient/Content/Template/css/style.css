@@ -51,7 +51,7 @@ h5 {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
-  background-color: #293846;
+  background-color: #4f2e2e;
   color: white;
 }
 .nav .open > a,
@@ -170,14 +170,16 @@ h5 {
 .nav-header {
   padding: 33px 25px;
   background-color: #2f4050;
-  background-image: url("patterns/header-profile.png");
+  background-image: url("../../red.png");
+/*Navbar change */
+    /*background-image: url("patterns/header-profile.png");*/
 }
 .pace-done .nav-header {
   transition: all 0.4s;
 }
 .nav > li.active {
   border-left: 4px solid #19aa8d;
-  background: #293846;
+  background: #462929;
 }
 .nav.nav-second-level > li.active {
   border: none;
@@ -269,18 +271,18 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
   position: absolute;
   left: 70px;
   top: 0;
-  background-color: #2f4050;
+  background-color: #502f2f;
   padding: 10px 10px 10px 10px;
   font-size: 12px;
 }
 .canvas-menu.mini-navbar .nav-second-level {
-  background: #293846;
+  background: #462929;
 }
 .mini-navbar li.active .nav-second-level {
   left: 65px;
 }
 .navbar-default .special_link a {
-  background: #1ab394;
+  background: #b31a1a;
   color: white;
 }
 .navbar-default .special_link a:hover {
@@ -329,7 +331,7 @@ body.mini-navbar .navbar-default .nav > li > .nav-second-level li a {
 }
 .navbar-fixed-top,
 .navbar-static-top {
-  background: #f3f3f4;
+  background: #e9e9ec;
 }
 .fixed-nav #wrapper {
   margin-top: 0;
@@ -7599,7 +7601,7 @@ body.rtls.top-navigation .footer.fixed {
   background-image: url('patterns/header-profile-skin-1.png');
 }
 .skin-1.mini-navbar .nav-second-level {
-  background: #3e495f;
+  background: #5f3e3e;
 }
 .skin-1 .breadcrumb {
   background: transparent;
@@ -7730,7 +7732,7 @@ body.skin-2 {
 }
 .skin-2 #side-menu > li > a,
 .skin-2 .nav.nav-second-level > li > a {
-  color: #586b7d;
+  color: #765854;
 }
 .skin-2 .nav > li.active > a {
   color: #213a53;
@@ -8030,7 +8032,8 @@ body.md-skin {
 .md-skin .nav .open > a,
 .md-skin .nav .open > a:hover,
 .md-skin .nav .open > a:focus {
-  background: #1ab394;
+  background: #1ab394
+  ;
 }
 .md-skin .navbar-top-links li {
   display: inline-table;
@@ -8220,7 +8223,7 @@ body.md-skin {
   background: #ffffff;
 }
 .md-skin.top-navigation .nav > li.active a {
-  color: #1ab394;
+  color: #1ab39;
   background: #ffffff;
 }
 .md-skin.fixed-nav #wrapper.top-navigation #page-wrapper {

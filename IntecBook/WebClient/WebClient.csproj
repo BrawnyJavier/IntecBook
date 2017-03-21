@@ -250,8 +250,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\5673-200 copia.png" />
+    <Content Include="Content\5673-200.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\logo.png" />
+    <Content Include="Content\logos.png" />
+    <Content Include="Content\red-material-design.jpg" />
+    <Content Include="Content\red.png" />
+    <Content Include="Content\Scripts\Home.js" />
     <Content Include="Content\Template\404.html" />
     <Content Include="Content\Template\500.html" />
     <Content Include="Content\Template\agile_board.html" />
@@ -883,6 +890,7 @@
     <Content Include="Content\Template\lockscreen.html" />
     <Content Include="Content\Template\login.html" />
     <Content Include="Content\Template\login_two_columns.html" />
+    <Content Include="Content\Template\logo.png" />
     <Content Include="Content\Template\mailbox.html" />
     <Content Include="Content\Template\mail_compose.html" />
     <Content Include="Content\Template\mail_detail.html" />
@@ -927,6 +935,7 @@
     <Content Include="Content\Template\video.html" />
     <Content Include="Content\Template\vote_list.html" />
     <Content Include="Content\Template\widgets.html" />
+    <Content Include="Content\test.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
