@@ -235,6 +235,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\SubjectsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,10 +255,13 @@
     <Content Include="Content\5673-200.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Html\Trimestres.html" />
+    <Content Include="Html\Subjects.html" />
     <Content Include="Content\logo.png" />
     <Content Include="Content\logos.png" />
     <Content Include="Content\red-material-design.jpg" />
     <Content Include="Content\red.png" />
+    <Content Include="Content\Scripts\Subjects.js" />
     <Content Include="Content\Scripts\Home.js" />
     <Content Include="Content\Template\404.html" />
     <Content Include="Content\Template\500.html" />

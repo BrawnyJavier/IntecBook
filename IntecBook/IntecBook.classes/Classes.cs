@@ -19,14 +19,14 @@ namespace IntecBook.classes
         public int Id { get; set; }
         public User User { get; set; }
         //public int UserID { get; set; }
-        public List<Day> Days { get; set; }
+        public List<DailySchedules> DaysInSchedule { get; set; }
         public int Year { get; set; }
         public int Trimestre { get; set; }
     }
     public class Day
     {
         public int Id { get; set; }
-        public Schedule schedule { get; set; }
+        //public Schedule schedule { get; set; }
         public string Name { get; set; }
         public List<DailySchedules> DaySchedule { get; set; }
 
@@ -56,14 +56,15 @@ namespace IntecBook.classes
     {
         public int Id { get; set; }
         public User student { get; set; }
-        public Subject subject { get; set; }
+        public Subjects subject { get; set; }
         public DailySchedules Schedule { get; set; }
         public List<Notes> Notes { get; set; }
     }
-    public class Subject
+    public class Subjects
     {
         public int Id { get; set; }
-        string name { get; set; }
+        string Name { get; set; }
+        int Creditos { get; set; }
         public List<StudentSubjects> EnrolledStudents;
 
     }

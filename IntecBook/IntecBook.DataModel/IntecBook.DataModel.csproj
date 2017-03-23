@@ -54,6 +54,26 @@
     <Compile Include="Migrations\201703200206514_initial.Designer.cs">
       <DependentUpon>201703200206514_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703211855399_Days Change in model.cs" />
+    <Compile Include="Migrations\201703211855399_Days Change in model.Designer.cs">
+      <DependentUpon>201703211855399_Days Change in model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703211902043_Subjects.cs" />
+    <Compile Include="Migrations\201703211902043_Subjects.Designer.cs">
+      <DependentUpon>201703211902043_Subjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703211904425_verbos.cs" />
+    <Compile Include="Migrations\201703211904425_verbos.Designer.cs">
+      <DependentUpon>201703211904425_verbos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703231136278_ChangeInSubjects.cs" />
+    <Compile Include="Migrations\201703231136278_ChangeInSubjects.Designer.cs">
+      <DependentUpon>201703231136278_ChangeInSubjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703231138451_ChangeInSubjects1.cs" />
+    <Compile Include="Migrations\201703231138451_ChangeInSubjects1.Designer.cs">
+      <DependentUpon>201703231138451_ChangeInSubjects1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +90,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703200206514_initial.resx">
       <DependentUpon>201703200206514_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703211855399_Days Change in model.resx">
+      <DependentUpon>201703211855399_Days Change in model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703211902043_Subjects.resx">
+      <DependentUpon>201703211902043_Subjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703211904425_verbos.resx">
+      <DependentUpon>201703211904425_verbos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703231136278_ChangeInSubjects.resx">
+      <DependentUpon>201703231136278_ChangeInSubjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703231138451_ChangeInSubjects1.resx">
+      <DependentUpon>201703231138451_ChangeInSubjects1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
