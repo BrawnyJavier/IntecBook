@@ -1,2 +1,2 @@
 # IntecBook
-Trabajo final de Gestion de proyectos, INTEC
+Este pequeño sistema es una especie de "cloud notebook" enfocado a estudiantes del intec. Aca se pueden gestionar los horarios de los trimestres y almacenar documentos estilo notas para cada asignatura. Esta escrito utilizando las siguientes tecnologias Asp.Net MVC, WebApi, Entity Framework, Boostrap, Jquery.
