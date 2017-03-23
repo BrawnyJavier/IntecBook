@@ -23,7 +23,7 @@ namespace WebClient.Controllers.API
             {
                 var SubjectsData = _context.Subject.ToList();
                 var data = SubjectsData.Select(
-                    subject => new 
+                    subject => new
                     {
                         Creditos = subject.Creditos,
                         Id = subject.Id,
@@ -61,13 +61,39 @@ namespace WebClient.Controllers.API
         }
 
         // PUT: api/Subjects/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]Subjects value)
         {
+            using (var _context = new IntecBookContext())
+            {
+                var SubjectInDatabase = _context.Subject.Where(x => x.Id == id).FirstOrDefault();
+              //  SubjectInDatabase = value;
+           
+                SubjectInDatabase.Name = value.Name;
+                SubjectInDatabase.Creditos = value.Creditos;
+                _context.SaveChanges();
+
+            }
+
         }
 
         // DELETE: api/Subjects/5
-        public void Delete(int id)
+        public object Delete(int id)
         {
+            using (var _context = new IntecBookContext())
+            {
+                try
+                {
+                    _context.Subject.Remove(
+                        _context.Subject.Where(x => x.Id == id).FirstOrDefault()
+                            );
+                    _context.SaveChanges();
+                    return HttpStatusCode.OK;
+                }
+                catch (Exception)
+                {
+                    return HttpStatusCode.BadRequest;
+                }
+            }
         }
     }
 }

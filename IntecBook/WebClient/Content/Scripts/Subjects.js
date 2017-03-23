@@ -29,7 +29,6 @@ function SubjectsLoad() {
                 "dataType": 'json',
                 "type": "GET",
                 "dataSrc": ""
-
             },
             "columns": [
                 { "data": "id" },
@@ -48,27 +47,70 @@ function SubjectsLoad() {
             else {
                 oTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+                tempSubject.reset();
             }
         });
+        // Añadir un registro 
         $(document).on("click", "#saveButtn", function () {
+            $("#saveButtn").attr("disabled", true);
             var Asignatura =
                   {
                       Id: null,
                       Name: $('#AsignaturaName').val(),
                       Creditos: $('#AsignaturaCreditos').val()
                   };
-
             $.ajax({
                 type: "POST",
                 data: JSON.stringify(Asignatura),
                 url: "api/Subjects",
                 contentType: "application/json",
                 success: function (data) {
+                    $("#saveButtn").attr("disabled", false);
                     oTable.ajax.reload();
                 }
             });
-
-
+        });
+        // Eliminar un registro 
+        $(document).on("click", "#ConfirmDeleteBtn", function () {
+            $("#ConfirmDeleteBtn").attr("disabled", true);
+            $.ajax({
+                type: "DELETE",
+                url: "api/Subjects/" + tempSubject.id,
+                contentType: "application/json",
+                success: function (data) {
+                    $("#ConfirmDeleteBtn").attr("disabled", false);
+                    oTable.ajax.reload();
+                    tempSubject.reset();
+                    $('#delete').modal('toggle');
+                }
+            });
+        });
+        // Editar un registro
+        $(document).on("click", "#UpdateRegBtn", function () {
+            $("#UpdateRegBtn").attr("disabled", true);
+            var Asignatura =
+                  {
+                      Id: null,
+                      Name: $('#AsignaturaNameED').val(),
+                      Creditos: $('#AsignaturaCreditosED').val()
+                  };
+            $.ajax({
+                type: "PUT",
+                url: "api/Subjects/" + tempSubject.id,
+                data: JSON.stringify(Asignatura),
+                contentType: "application/json",
+                success: function (data) {
+                    $("#UpdateRegBtn").attr("disabled", false);
+                    oTable.ajax.reload();
+                    tempSubject.reset();
+                    $('#edit').modal('toggle');
+                }
+            });
+        });
+        
+        $(document).on("click", "#editBtn", function () {
+            $('#AsignaturaNameED').val(tempSubject.name);
+            $('#AsignaturaCreditosED').val(tempSubject.creditos);
         });
     });
 }
