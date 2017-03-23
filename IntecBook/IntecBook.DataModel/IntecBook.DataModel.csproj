@@ -74,6 +74,14 @@
     <Compile Include="Migrations\201703231138451_ChangeInSubjects1.Designer.cs">
       <DependentUpon>201703231138451_ChangeInSubjects1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703231328261_dele.cs" />
+    <Compile Include="Migrations\201703231328261_dele.Designer.cs">
+      <DependentUpon>201703231328261_dele.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703231330076_undele.cs" />
+    <Compile Include="Migrations\201703231330076_undele.Designer.cs">
+      <DependentUpon>201703231330076_undele.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,6 +113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703231138451_ChangeInSubjects1.resx">
       <DependentUpon>201703231138451_ChangeInSubjects1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703231328261_dele.resx">
+      <DependentUpon>201703231328261_dele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703231330076_undele.resx">
+      <DependentUpon>201703231330076_undele.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

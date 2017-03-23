@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using IntecBook.classes;
 using IntecBook.DataModel;
+using System.Data.Entity;
+
 namespace WebClient.Controllers.API
 {
     public class SubjectsController : ApiController
@@ -15,20 +17,47 @@ namespace WebClient.Controllers.API
             var _Context = new IntecBookContext();
         }
         // GET: api/Subjects
-        public IEnumerable<string> Get()
+        public IEnumerable<object> Get()
         {
-            return new string[] { "value1", "value2" };
+            using (var _context = new IntecBookContext())
+            {
+                var SubjectsData = _context.Subject.ToList();
+                var data = SubjectsData.Select(
+                    subject => new 
+                    {
+                        Creditos = subject.Creditos,
+                        Id = subject.Id,
+                        Name = subject.Name
+                    }).ToList();
+                return data;
+            }
         }
-
         // GET: api/Subjects/5
-        public string Get(int id)
+        public Subjects Get(int id)
         {
-            return "value";
+            using (var _context = new IntecBookContext())
+            {
+                return _context.Subject.
+                    Where(x => x.Id == id).FirstOrDefault();
+            }
         }
 
         // POST: api/Subjects
-        public void Post([FromBody]string value)
+        public object Post([FromBody]Subjects value)
         {
+            try
+            {
+                using (var _context = new IntecBookContext())
+                {
+                    _context.Subject.Add(value);
+                    _context.SaveChanges();
+                    return HttpStatusCode.OK;
+                }
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.BadRequest;
+            }
         }
 
         // PUT: api/Subjects/5

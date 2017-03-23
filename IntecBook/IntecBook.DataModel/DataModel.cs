@@ -9,7 +9,7 @@ using IntecBook.classes;
 namespace IntecBook.DataModel
 {
     public class IntecBookContext : DbContext
-    {
+    {         
         public DbSet<User> Users { get; set; }
         public DbSet<Major> Majors { get; set; }
         public DbSet<Schedule> Schedule { get; set; }

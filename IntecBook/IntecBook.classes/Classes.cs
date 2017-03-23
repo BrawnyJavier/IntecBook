@@ -56,15 +56,15 @@ namespace IntecBook.classes
     {
         public int Id { get; set; }
         public User student { get; set; }
-        public Subjects subject { get; set; }
+       public Subjects subject { get; set; }
         public DailySchedules Schedule { get; set; }
         public List<Notes> Notes { get; set; }
     }
     public class Subjects
     {
         public int Id { get; set; }
-        string Name { get; set; }
-        int Creditos { get; set; }
+        public string Name { get; set; }
+        public  int Creditos { get; set; }
         public List<StudentSubjects> EnrolledStudents;
 
     }
