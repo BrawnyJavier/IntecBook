@@ -10,7 +10,7 @@
     }); 
     $(document).on("click", "#TrimestresNav", function () {
         $("#AjaxLoads").load("/Html/Trimestres.html", function () {
-
+            MasterLoad();
         });
     });
     

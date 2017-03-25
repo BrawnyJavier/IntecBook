@@ -17,26 +17,27 @@ function subjectClass() {
     }
 }
 var tempSubject = new subjectClass();
-function SubjectsLoad() {
+function MasterLoad() {
+    alert("g");
     $(document).ready(function () {
+     
         $('#editBtn').hide();
         $('#deleteBtn').hide();
-        //var link = "http://localhost:60410/";
-        oTable = $('#AsignaturasTable').DataTable({
+        oTable = $('#SchedulesTable').DataTable({
             responsive: true,
             "ajax": {
-                "url": "/api/Subjects",
+                "url": "/api/Trimestres",
                 "dataType": 'json',
                 "type": "GET",
                 "dataSrc": ""
             },
             "columns": [
                 { "data": "id" },
-                { "data": "name" },
-                { "data": "creditos" },
+                { "data": "trimestre" },
+                { "data": "year" },
             ]
         });
-        $('#AsignaturasTable tbody').on('click', 'tr', function () {
+        $('#SchedulesTable tbody').on('click', 'tr', function () {
             console.log(oTable.row(this).data());
             tempSubject.set(oTable.row(this).data());
             $('#deleteBtn').show();
@@ -47,7 +48,7 @@ function SubjectsLoad() {
             else {
                 oTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                
+
             }
         });
         // Añadir un registro 
@@ -107,7 +108,7 @@ function SubjectsLoad() {
                 }
             });
         });
-        
+
         $(document).on("click", "#editBtn", function () {
             $('#AsignaturaNameED').val(tempSubject.name);
             $('#AsignaturaCreditosED').val(tempSubject.creditos);
