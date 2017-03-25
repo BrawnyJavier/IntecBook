@@ -1,8 +1,9 @@
 ﻿var oTable;
-function subjectClass() {
+function PeriodoClass() {
     this.id = "";
-    this.name = "";
-    this.creditos = "";
+    this.trimestre = "";
+    this.user = "";
+    this.year = "";
     this.set = function (obj) {
         for (var key in obj) {
             this[key] = obj[key];
@@ -16,13 +17,11 @@ function subjectClass() {
         }
     }
 }
-var tempSubject = new subjectClass();
+var tempPeriodo = new PeriodoClass();
 function MasterLoad() {
-    alert("g");
     $(document).ready(function () {
-     
-        $('#editBtn').hide();
-        $('#deleteBtn').hide();
+        $('#editBtn,#seeRegs,#deleteBtn').hide();
+        //  $('#deleteBtn').hide();
         oTable = $('#SchedulesTable').DataTable({
             responsive: true,
             "ajax": {
@@ -33,14 +32,14 @@ function MasterLoad() {
             },
             "columns": [
                 { "data": "id" },
-                { "data": "trimestre" },
-                { "data": "year" },
+                   { "data": "year" },
+                { "data": "trimestre" }
             ]
         });
         $('#SchedulesTable tbody').on('click', 'tr', function () {
             console.log(oTable.row(this).data());
-            tempSubject.set(oTable.row(this).data());
-            $('#deleteBtn').show();
+            tempPeriodo.set(oTable.row(this).data());
+            $('#deleteBtn,#seeRegs').show();
             $('#editBtn').show();
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -48,22 +47,22 @@ function MasterLoad() {
             else {
                 oTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-
             }
         });
         // Añadir un registro 
         $(document).on("click", "#saveButtn", function () {
             $("#saveButtn").attr("disabled", true);
-            var Asignatura =
+            var Periodo =
                   {
                       Id: null,
-                      Name: $('#AsignaturaName').val(),
-                      Creditos: $('#AsignaturaCreditos').val()
+                      Trimestre: $('#AsignaturaCreditos').val(),
+                      Year: $('#AsignaturaName').val(),
+                      User: null
                   };
             $.ajax({
                 type: "POST",
-                data: JSON.stringify(Asignatura),
-                url: "api/Subjects",
+                data: JSON.stringify(Periodo),
+                url: "api/Trimestres",
                 contentType: "application/json",
                 success: function (data) {
                     $("#saveButtn").attr("disabled", false);
@@ -76,12 +75,12 @@ function MasterLoad() {
             $("#ConfirmDeleteBtn").attr("disabled", true);
             $.ajax({
                 type: "DELETE",
-                url: "api/Subjects/" + tempSubject.id,
+                url: "api/Trimestres/" + tempPeriodo.id,
                 contentType: "application/json",
                 success: function (data) {
                     $("#ConfirmDeleteBtn").attr("disabled", false);
                     oTable.ajax.reload();
-                    tempSubject.reset();
+                    tempPeriodo.reset();
                     $('#delete').modal('toggle');
                 }
             });
@@ -89,29 +88,31 @@ function MasterLoad() {
         // Editar un registro
         $(document).on("click", "#UpdateRegBtn", function () {
             $("#UpdateRegBtn").attr("disabled", true);
-            var Asignatura =
+            var Periodo =
                   {
-                      Id: null,
-                      Name: $('#AsignaturaNameED').val(),
-                      Creditos: $('#AsignaturaCreditosED').val()
+
+                      Id: tempPeriodo.id,
+                      Trimestre: $('#AsignaturaCreditosED').val(),
+                      User: tempPeriodo.user,
+                      Year: $('#AsignaturaNameED').val()
                   };
             $.ajax({
                 type: "PUT",
-                url: "api/Subjects/" + tempSubject.id,
-                data: JSON.stringify(Asignatura),
+                url: "api/Trimestres/" + tempPeriodo.id,
+                data: JSON.stringify(Periodo),
                 contentType: "application/json",
                 success: function (data) {
                     $("#UpdateRegBtn").attr("disabled", false);
                     oTable.ajax.reload();
-                    tempSubject.reset();
+                    tempPeriodo.reset();
                     $('#edit').modal('toggle');
                 }
             });
         });
 
         $(document).on("click", "#editBtn", function () {
-            $('#AsignaturaNameED').val(tempSubject.name);
-            $('#AsignaturaCreditosED').val(tempSubject.creditos);
+            $('#AsignaturaNameED').val(tempPeriodo.year);
+            $('#AsignaturaCreditosED').val(tempPeriodo.trimestre);
         });
     });
 }

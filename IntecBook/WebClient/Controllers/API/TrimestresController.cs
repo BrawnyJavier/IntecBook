@@ -23,7 +23,7 @@ namespace WebClient.Controllers.API
                         Id = schedule.Id,
                         Trimestre = schedule.Trimestre,
                         Year = schedule.Year
-                        
+
                     }).ToList();
                 return data;
             }
@@ -62,13 +62,11 @@ namespace WebClient.Controllers.API
             using (var _context = new IntecBookContext())
             {
                 var SubjectInDatabase = _context.Schedule.Where(x => x.Id == id).FirstOrDefault();
-                //  SubjectInDatabase = value;
+                SubjectInDatabase.Year = value.Year;
+                SubjectInDatabase.Trimestre = value.Trimestre;
                 _context.SaveChanges();
-
             }
-
         }
-
         // DELETE: api/Subjects/5
         public object Delete(int id)
         {
@@ -76,8 +74,8 @@ namespace WebClient.Controllers.API
             {
                 try
                 {
-                    _context.Subject.Remove(
-                        _context.Subject.Where(x => x.Id == id).FirstOrDefault()
+                    _context.Schedule.Remove(
+                        _context.Schedule.Where(x => x.Id == id).FirstOrDefault()
                             );
                     _context.SaveChanges();
                     return HttpStatusCode.OK;

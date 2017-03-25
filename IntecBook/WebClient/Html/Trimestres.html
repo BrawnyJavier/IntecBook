@@ -2,13 +2,13 @@
 <div class="wrapper wrapper-content">
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-sm-4">
-            <h2>Mis Trimestres</h2>
+            <h2>Mis Periodos</h2>
 
         </div>
         <div class="col-sm-8">
             <div class="title-action pull-right">
-
-                <a href="" class="btn btn-primary" data-toggle="modal" data-target="#Create"><i class="fa fa-plus"></i> Añadir Trimestre</a>
+                <a id="seeRegs" href="" class="btn btn-success" data-toggle="modal" data-target="#Create"><i class="fa fa-eye"></i> Ver Notas del Periodo </a>
+                <a href="" class="btn btn-primary" data-toggle="modal" data-target="#Create"><i class="fa fa-plus"></i> Añadir Periodo</a>
                 <a id="editBtn" class="btn btn-warning" data-toggle="modal" data-target="#edit"><i class="fa fa-plus"></i> Editar</a>
                 <a id="deleteBtn" class="btn btn-danger" data-toggle="modal" data-target="#delete"><i class="fa fa-plus"></i> Eliminar</a>
             </div>
@@ -23,7 +23,7 @@
                         <tr>
                             <th style="width:10%">Id</th>
                             <th>Año</th>
-                            <th style="width:10%">Trimestre</th>
+                            <th style="width:10%">Periodo</th>
                             <!--<th style="width:10%">Eliminar</th>-->
                         </tr>
                     </thead>
@@ -36,16 +36,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title custom_align" id="Heading">Añadir Trimestre</h4>
+                    <h4 class="modal-title custom_align" id="Heading">Añadir Periodo</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="form-control" style="border:none">Nombre</label>
-                        <input id="AsignaturaName" class="form-control " type="text" placeholder="Nombre">
+                        <label class="form-control" style="border:none">Año</label>
+                        <input id="AsignaturaName" class="form-control " type="number" placeholder="Año">
                     </div>
                     <div class="form-group">
-                        <label class="form-control" style="border:none">Creditos</label>
-                        <input id="AsignaturaCreditos" class="form-control " type="number" placeholder="Creditos">
+                        <label class="form-control" style="border:none">Periodo</label>
+                        <input id="AsignaturaCreditos" class="form-control " type="number" placeholder="Periodo">
                     </div>
                 </div>
                 <div class="modal-footer ">
@@ -61,16 +61,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title custom_align" id="Heading">Editar asignatura</h4>
+                    <h4 class="modal-title custom_align" id="Heading">Editar Periodo</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="form-control" style="border:none">Nombre</label>
-                        <input id="AsignaturaNameED" class="form-control " type="text" placeholder="Nombre">
+                        <label class="form-control" style="border:none">Año</label>
+                        <input id="AsignaturaNameED" class="form-control " type="text" placeholder="Año">
                     </div>
                     <div class="form-group">
-                        <label class="form-control" style="border:none">Creditos</label>
-                        <input id="AsignaturaCreditosED" class="form-control " type="number" placeholder="Creditos">
+                        <label class="form-control" style="border:none">Periodo</label>
+                        <input id="AsignaturaCreditosED" class="form-control " type="number" placeholder="Periodo">
                     </div>
                 </div>
                 <div class="modal-footer ">
