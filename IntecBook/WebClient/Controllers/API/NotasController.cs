@@ -4,15 +4,20 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using IntecBook.classes;
+using IntecBook.DataModel;
 
 namespace WebClient.Controllers.API
 {
     public class NotasController : ApiController
     {
         // GET: api/Notas
-        public IEnumerable<string> Get()
+        public IEnumerable<object> Get()
         {
-            return new string[] { "value1", "value2" };
+            using (var _context = new IntecBookContext())
+            {
+                return _context.Notes.ToList();
+            }      
         }
 
         // GET: api/Notas/5

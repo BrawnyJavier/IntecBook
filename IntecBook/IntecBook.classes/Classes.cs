@@ -73,6 +73,8 @@ namespace IntecBook.classes
         public int Id { get; set; }
         public User Owner { get; set; }
         public StudentSubjects Subject { get; set; }
+        public string Title { get; set; } 
+        public string content { get; set; } 
     }
 
 }

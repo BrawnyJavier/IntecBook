@@ -82,6 +82,14 @@
     <Compile Include="Migrations\201703231330076_undele.Designer.cs">
       <DependentUpon>201703231330076_undele.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703261616405_Correction on notes.cs" />
+    <Compile Include="Migrations\201703261616405_Correction on notes.Designer.cs">
+      <DependentUpon>201703261616405_Correction on notes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703261620391_correction on notes -force.cs" />
+    <Compile Include="Migrations\201703261620391_correction on notes -force.Designer.cs">
+      <DependentUpon>201703261620391_correction on notes -force.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -119,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703231330076_undele.resx">
       <DependentUpon>201703231330076_undele.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261616405_Correction on notes.resx">
+      <DependentUpon>201703261616405_Correction on notes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261620391_correction on notes -force.resx">
+      <DependentUpon>201703261620391_correction on notes -force.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
