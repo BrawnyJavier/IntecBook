@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace WebClient.Controllers.API
@@ -29,13 +30,14 @@ namespace WebClient.Controllers.API
             }
         }
         // GET: api/Trimestres/5
-        public Schedule Get(int id)
+        public object Get(int id)
         {
-            using (var _context = new IntecBookContext())
-            {
-                return _context.Schedule.
-                    Where(x => x.Id == id).FirstOrDefault();
-            }
+            //using (var _context = new IntecBookContext())
+            //{
+            //    return _context.Schedule.
+            //        Where(x => x.Id == id).FirstOrDefault();
+            //}
+            return Thread.CurrentPrincipal.Identity;
         }
 
         // POST: api/Subjects

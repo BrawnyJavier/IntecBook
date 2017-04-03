@@ -236,6 +236,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\NotasController.cs" />
+    <Compile Include="Controllers\API\StudentSubjectsController.cs" />
     <Compile Include="Controllers\API\SubjectsController.cs" />
     <Compile Include="Controllers\API\TrimestresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -257,6 +258,9 @@
     <Content Include="Content\5673-200.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Scripts\Plugin\clockpicker\clockpicker.css" />
+    <Content Include="Content\Scripts\Plugin\clockpicker\clockpicker.js" />
+    <Content Include="Content\Scripts\Plugin\clockpicker\standalone.css" />
     <Content Include="Content\Scripts\Trimestres.js" />
     <Content Include="Content\tadatable.css" />
     <Content Include="Html\Trimestres.html" />
@@ -1046,6 +1050,10 @@
     <ProjectReference Include="..\IntecBook.DataModel\IntecBook.DataModel.csproj">
       <Project>{cde4e261-c48d-4a11-9b6a-df6164e0f063}</Project>
       <Name>IntecBook.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntecBook.DTOS\IntecBook.DTOS.csproj">
+      <Project>{259c4503-2b6a-490a-98dd-95c412154a11}</Project>
+      <Name>IntecBook.DTOS</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

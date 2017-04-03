@@ -18,27 +18,70 @@ namespace WebClient.Controllers.API
             {
                 return _context.Notes.ToList();
             }      
-        }
-
-        // GET: api/Notas/5
-        public string Get(int id)
+        }                // GET: api/Notas/5
+        public object Get(int id)
         {
-            return "value";
+            using (var _context = new IntecBookContext())
+            {
+                return _context.Notes.Where(x => x.Id == id).FirstOrDefault();
+            }
         }
-
         // POST: api/Notas
-        public void Post([FromBody]string value)
+        public object Post([FromBody]Notes value)
         {
-        }
+            try
+            {
+                using (var _context = new IntecBookContext())
+                {
+                   _context.Notes.Add(value);
+                    _context.SaveChanges();
+                    return HttpStatusCode.OK;
 
+                }
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.BadRequest;
+            }
+        }
         // PUT: api/Notas/5
-        public void Put(int id, [FromBody]string value)
+        public object Put(int id, [FromBody]Notes value)
         {
+            try
+            {
+                using(var context = new IntecBookContext())
+                {
+                    var NoteInDatabase = context.Notes.Where(x => x.Id == id).FirstOrDefault();
+                    NoteInDatabase.content = value.content;
+                    NoteInDatabase.Title = value.Title;
+                    context.SaveChanges();
+                    return HttpStatusCode.OK;
+
+                }
+            }
+            catch (Exception)
+            {
+                return HttpStatusCode.NotModified;
+            }
         }
 
         // DELETE: api/Notas/5
-        public void Delete(int id)
+        public object Delete(int id)
         {
+            try
+            {
+                using (var contex = new IntecBookContext())
+                {
+                    contex.Notes.Remove(
+                        contex.Notes.Where(x => x.Id == id).FirstOrDefault()
+                        );               
+                    return HttpStatusCode.OK;
+                }
+
+            }catch (Exception)
+            {
+                return HttpStatusCode.NotFound;
+            }
         }
     }
 }

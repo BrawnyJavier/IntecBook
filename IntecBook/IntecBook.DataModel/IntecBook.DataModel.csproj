@@ -90,6 +90,14 @@
     <Compile Include="Migrations\201703261620391_correction on notes -force.Designer.cs">
       <DependentUpon>201703261620391_correction on notes -force.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703261701422_Correction on daily schedules.cs" />
+    <Compile Include="Migrations\201703261701422_Correction on daily schedules.Designer.cs">
+      <DependentUpon>201703261701422_Correction on daily schedules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703261706358_Correction on daily schedules2.cs" />
+    <Compile Include="Migrations\201703261706358_Correction on daily schedules2.Designer.cs">
+      <DependentUpon>201703261706358_Correction on daily schedules2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -133,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703261620391_correction on notes -force.resx">
       <DependentUpon>201703261620391_correction on notes -force.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261701422_Correction on daily schedules.resx">
+      <DependentUpon>201703261701422_Correction on daily schedules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703261706358_Correction on daily schedules2.resx">
+      <DependentUpon>201703261706358_Correction on daily schedules2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

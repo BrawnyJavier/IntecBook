@@ -48,8 +48,8 @@ namespace IntecBook.classes
         public int Id { get; set; }
         public Schedule Schedule { get; set; }
         public Day Day { get; set; }
-        public DateTime StartHour { get; set; }
-        public DateTime EndHour { get; set; }
+        public int StartHour { get; set; }
+        public int EndHour { get; set; }
         public List<StudentSubjects> Subjects { get; set; }
     }
     public class StudentSubjects
