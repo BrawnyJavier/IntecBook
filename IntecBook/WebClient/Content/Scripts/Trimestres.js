@@ -1,6 +1,7 @@
 ﻿var oTable;
 var PeriodosTable;
 var AsignaturasTable;
+var StudentSubjectsTable;
 var selected = false;
 function PeriodoClass() {
     this.id = "";
@@ -43,12 +44,12 @@ function MasterLoad() {
     $(document).ready(function () {
         $('#addSubject').slideUp();
         $('.clockpicker').clockpicker();
-        $('#editBtn,#seeRegs,#deleteBtn,#AsignaturasTables').hide();
+        $('#editBtn,#seeRegs,#deleteBtnT,#AsignaturasTables').hide();
         //  $('#deleteBtn').hide();
         PeriodosTable = $('#SchedulesTable').DataTable({
             responsive: true,
             "ajax": {
-                "url": "/api/Trimestres",
+                "url": "/api/Trimestres/GetTrimestres",
                 "dataType": 'json',
                 "type": "GET",
                 "dataSrc": "",
@@ -66,7 +67,7 @@ function MasterLoad() {
         AsignaturasTable = $('#AsignaturasTable').DataTable({
             responsive: true,
             "ajax": {
-                "url": "/api/Subjects",
+                "url": "/api/Subjects/GetSubjects",
                 "dataType": 'json',
                 "type": "GET",
                 "dataSrc": ""
@@ -80,12 +81,12 @@ function MasterLoad() {
         $('#SchedulesTable tbody').on('click', 'tr', function () {
             console.log(PeriodosTable.row(this).data());
             tempPeriodo.set(PeriodosTable.row(this).data());
-            $('#deleteBtn,#seeRegs,#AsignaturasTables').show();
+            $('#deleteBtnT,#seeRegs,#AsignaturasTables').show();
             $('#editBtn').show();
             $('#Add').hide();
             if ($(this).hasClass('selected')) {
                 $('#Add').show();
-                $('#deleteBtn,#seeRegs,#editBtn,#AsignaturasTables').hide();
+                $('#deleteBtnT,#seeRegs,#editBtn,#AsignaturasTables').hide();
                 //$('#AsignaturasTables').hide();
                 $(this).removeClass('selected');
             }
@@ -93,6 +94,30 @@ function MasterLoad() {
                 PeriodosTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
             }
+            if (StudentSubjectsTable) StudentSubjectsTable.destroy();
+            // Load StudentsSubjectsTable
+            StudentSubjectsTable = $('#StudentsSubjectsTable').DataTable({
+                responsive: true,
+                "ajax": {
+                    "url": "/api/Trimestres/GetTrimestreSchedule/" + tempPeriodo.id,
+                    "dataType": 'json',
+                    "type": "GET",
+                    "sDom": 'rt',
+                    "dataSrc": "",
+                    "sDom": 'rt',
+                    "paging": false,
+                    "ordering": true,
+                    "info": false
+                },
+                "columns": [
+                    { "data": "creditos" },
+                       { "data": "asignatura" },
+                    { "data": "horario" }
+                ]
+            });
+
+
+
         });
         $('#AsignaturasTable tbody').on('click', 'tr', function () {
             console.log(AsignaturasTable.row(this).data());
@@ -103,6 +128,17 @@ function MasterLoad() {
             else {
                 AsignaturasTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
+            }
+        });
+
+        $.getJSON("api/StudentSubjects/GetDays", function (json) {
+            console.log(json);
+            for (var key in json) {
+                if (json.hasOwnProperty(key)) {
+                    //console.log(json[key].id);
+                    //console.log(json[key].name);
+                    $('#datsSelect').append('<option value="' + json[key].id + '">' + json[key].name + '</option>');
+                }
             }
         });
         // Añadir un registro 
@@ -118,7 +154,7 @@ function MasterLoad() {
             $.ajax({
                 type: "POST",
                 data: JSON.stringify(Periodo),
-                url: "api/Trimestres",
+                url: "api/Trimestres/CreateTrimestre",
                 contentType: "application/json",
                 success: function (data) {
                     $("#saveButtn").attr("disabled", false);
@@ -129,18 +165,47 @@ function MasterLoad() {
         $(document).on("click", "#SelectSub", function () {
             $('#Asignaturas').modal('toggle');
             $('#addSubject').slideDown();
-
-
+            $('#asignaturaName').val(tempSubject.name);
         });
-        // Eliminar un registro 
-        $(document).on("click", "#ConfirmDeleteBtn", function () {
-            $("#ConfirmDeleteBtn").attr("disabled", true);
+        $(document).on("click", "#AddStudentSubjectsBtn", function () {
+            /*
+             public int Id { get; set; }
+        public double StartHour { get; set; }
+        public double EndHour { get; set; }
+        public int DayId { get; set; }
+        public int TrimestreId { get; set; }
+        public int studentID { get; set; }
+        public int subjectID { get; set;}
+            */
+            var StudentSubjectModel = {
+                student_Id: null,
+                subjectID: tempSubject.id,
+                StartHour: $('#InicioInput').val(),
+                EndHour: $('#FinInput').val(),
+                DayId: $("#datsSelect").val(),
+                TrimestreId: tempPeriodo.id,
+            }
             $.ajax({
-                type: "DELETE",
-                url: "api/Trimestres/" + tempPeriodo.id,
+                type: "POST",
+                data: JSON.stringify(StudentSubjectModel),
+                url: "api/StudentSubjects/CreateStudentSubject",
                 contentType: "application/json",
                 success: function (data) {
-                    $("#ConfirmDeleteBtn").attr("disabled", false);
+                    //$("#saveButtn").attr("disabled", false);
+                    //PeriodosTable.ajax.reload();
+                    console.log('OK');
+                }
+            });
+        });
+        // Eliminar un registro 
+        $(document).on("click", "#ConfirmDeleteBtnT", function () {
+            $("#ConfirmDeleteBtnT").attr("disabled", true);
+            $.ajax({
+                type: "DELETE",
+                url: "api/Trimestres/DeleteTrimestre/" + tempPeriodo.id,
+                contentType: "application/json",
+                success: function (data) {
+                    $("#ConfirmDeleteBtnT").attr("disabled", false);
                     PeriodosTable.ajax.reload();
                     tempPeriodo.reset();
                     $('#delete').modal('toggle');
@@ -152,7 +217,6 @@ function MasterLoad() {
             $("#UpdateRegBtn").attr("disabled", true);
             var Periodo =
                   {
-
                       Id: tempPeriodo.id,
                       Trimestre: $('#AsignaturaCreditosED').val(),
                       User: tempPeriodo.user,
@@ -160,7 +224,7 @@ function MasterLoad() {
                   };
             $.ajax({
                 type: "PUT",
-                url: "api/Trimestres/" + tempPeriodo.id,
+                url: "api/Trimestres/UpdateTrimestre/" + tempPeriodo.id,
                 data: JSON.stringify(Periodo),
                 contentType: "application/json",
                 success: function (data) {

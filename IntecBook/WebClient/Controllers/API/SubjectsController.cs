@@ -16,8 +16,10 @@ namespace WebClient.Controllers.API
         {
             var _Context = new IntecBookContext();
         }
+
         // GET: api/Subjects
-        public IEnumerable<object> Get()
+        [HttpGet]
+        public IEnumerable<object> GetSubjects()
         {
             using (var _context = new IntecBookContext())
             {
@@ -33,7 +35,8 @@ namespace WebClient.Controllers.API
             }
         }
         // GET: api/Subjects/5
-        public Subjects Get(int id)
+        [HttpGet]
+        public Subjects GetSubjectById(int id)
         {
             using (var _context = new IntecBookContext())
             {
@@ -42,8 +45,9 @@ namespace WebClient.Controllers.API
             }
         }
 
-        // POST: api/Subjects
-        public object Post([FromBody]Subjects value)
+        // POST: api/Subjects.
+        [HttpPost]
+        public object CreateSubject([FromBody]Subjects value)
         {
             try
             {
@@ -61,7 +65,8 @@ namespace WebClient.Controllers.API
         }
 
         // PUT: api/Subjects/5
-        public void Put(int id, [FromBody]Subjects value)
+        [HttpPut]
+        public void UpdateSubject(int id, [FromBody]Subjects value)
         {
             using (var _context = new IntecBookContext())
             {
@@ -77,7 +82,8 @@ namespace WebClient.Controllers.API
         }
 
         // DELETE: api/Subjects/5
-        public object Delete(int id)
+        [HttpDelete]
+        public object DeleteSubject(int id)
         {
             using (var _context = new IntecBookContext())
             {

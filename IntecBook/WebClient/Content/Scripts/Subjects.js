@@ -25,7 +25,7 @@ function SubjectsLoad() {
         oTable = $('#AsignaturasTable').DataTable({
             responsive: true,
             "ajax": {
-                "url": "/api/Subjects",
+                "url": "/api/GetSubjects",
                 "dataType": 'json',
                 "type": "GET",
                 "dataSrc": ""
@@ -62,7 +62,7 @@ function SubjectsLoad() {
             $.ajax({
                 type: "POST",
                 data: JSON.stringify(Asignatura),
-                url: "api/Subjects",
+                url: "api/Subjects/CreateSubject",
                 contentType: "application/json",
                 success: function (data) {
                     $("#saveButtn").attr("disabled", false);
@@ -75,7 +75,7 @@ function SubjectsLoad() {
             $("#ConfirmDeleteBtn").attr("disabled", true);
             $.ajax({
                 type: "DELETE",
-                url: "api/Subjects/" + tempSubject.id,
+                url: "api/Subjects/DeleteSubject/" + tempSubject.id,
                 contentType: "application/json",
                 success: function (data) {
                     $("#ConfirmDeleteBtn").attr("disabled", false);
@@ -96,7 +96,7 @@ function SubjectsLoad() {
                   };
             $.ajax({
                 type: "PUT",
-                url: "api/Subjects/" + tempSubject.id,
+                url: "api/Subjects/UpdateSubject/" + tempSubject.id,
                 data: JSON.stringify(Asignatura),
                 contentType: "application/json",
                 success: function (data) {

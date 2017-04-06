@@ -15,65 +15,75 @@ namespace WebClient.Controllers.API
     public class StudentSubjectsController : ApiController
     {
         // GET: api/StudentSubjects
-        public IEnumerable<object> Get()
+        public IEnumerable<object> GetStudentSubjects()
         {
             using (var context = new IntecBookContext())
             {
-                //var data =
-                //     context.StudentSubjects.Join(
-                //         context.Subject,
-                //         StdSub => StdSub.Id,
-                //         Subject => Subject.Id,
-                //         (StdSub, Subject) =>
-                //         new
-                //         {
-                //             Asignatura = Subject.Name,
-                //             Creditos = Subject.Creditos,
-                //             Estudiante = StdSub.student,
-                //             Periodo = StdSub.Schedule.Id
-                //         });
                 var queryData = (
-                from SS in context.StudentSubjects
-                join S in context.Subject
-                on SS.subject.Id equals S.Id
-                select new
-                {
-                    S.Name,
-                    S.Creditos,
-                    Estudiante = SS.student.Name,
-                    Periodo = SS.Id,
-                    Periodo_Inicio = SS.Schedule.StartHour,
-                    Periodo_Finalizacion = SS.Schedule.EndHour
+                 from SS in context.StudentSubjects
+                 join S in context.Subject
+                 on SS.subject.Id equals S.Id
+                 select new
+                 {
+                     S.Name,
+                     S.Creditos,
+                     Estudiante = SS.student.Name,
+                     Periodo = SS.Id,
+                     Periodo_Inicio = SS.Schedule.StartHour,
+                     Periodo_Finalizacion = SS.Schedule.EndHour
 
-                }).ToList();
+                 }).ToList();
                 return queryData;
             }
         }
 
         // GET: api/StudentSubjects/5
-        public string Get(int id)
+        public object GetStudentSubjectById(int id)
         {
-            return "value";
+            using (var context = new IntecBookContext())
+            {
+                var queryData = (
+                  from SS in context.StudentSubjects
+                  where (SS.Id == id)
+                  join S in context.Subject
+                  on SS.subject.Id equals S.Id
+
+                  select new
+                  {
+                      S.Name,
+                      S.Creditos,
+                      Estudiante = SS.student.Name,
+                      Periodo = SS.Id,
+                      Periodo_Inicio = SS.Schedule.StartHour,
+                      Periodo_Finalizacion = SS.Schedule.EndHour
+
+                  }).FirstOrDefault();
+                return queryData;
+            }
         }
-                // POST: api/StudentSubjects
-        public object Post([FromBody]object value)
+        // POST: api/StudentSubjects
+        public object CreateStudentSubject([FromBody]StudentSubjectsDTO value)
         {
             try
             {
-                
-                var as_StudentSubject = JsonConvert.DeserializeObject<StudentSubjectsDTO>(value.ToString());
-             
                 using (var context = new IntecBookContext())
                 {
+                    var DailySchedule = new DailySchedules
+                    {
+                        Day = context.Day.Where(x => x.Id == value.DayId).FirstOrDefault(),
+                        EndHour = value.EndHour,
+                        StartHour = value.StartHour,
+                        Schedule = context.Schedule.Where(x => x.Id == value.TrimestreId).FirstOrDefault(),
+                    };
+                    context.DailySchedules.Add(DailySchedule);
+                    context.SaveChanges();
                     var toAdd = new StudentSubjects()
                     {
-                       
-
-                        // Schedule = trimestre
-                        Schedule = context.DailySchedules.Where(x=> x.Id == as_StudentSubject.Id).FirstOrDefault()
+                        Schedule = DailySchedule,
+                        //student =value.studentID,
+                        subject = context.Subject.Where(x => x.Id == value.subjectID).FirstOrDefault()
                     };
-                    //value.
-                    //context.StudentSubjects.Add();
+                    context.StudentSubjects.Add(toAdd);
                     context.SaveChanges();
                     return HttpStatusCode.OK;
                 }
@@ -85,12 +95,24 @@ namespace WebClient.Controllers.API
             }
         }
         // PUT: api/StudentSubjects/5
-        public void Put(int id, [FromBody]string value)
+        public void UpdateStudentSubject(int id, [FromBody]string value)
         {
         }
 
+        [HttpGet]
+        public IEnumerable<Day> GetDays()
+        {
+            using (var contex = new IntecBookContext())
+            {
+
+                IEnumerable<Day> result = contex.Day.ToArray();
+                return result;
+            }
+
+        }
+
         // DELETE: api/StudentSubjects/5
-        public void Delete(int id)
+        public void DeleteStudentSubject(int id)
         {
         }
     }

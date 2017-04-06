@@ -98,6 +98,38 @@
     <Compile Include="Migrations\201703261706358_Correction on daily schedules2.Designer.cs">
       <DependentUpon>201703261706358_Correction on daily schedules2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704041237169_populating days table.cs" />
+    <Compile Include="Migrations\201704041237169_populating days table.Designer.cs">
+      <DependentUpon>201704041237169_populating days table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704041246589_req.cs" />
+    <Compile Include="Migrations\201704041246589_req.Designer.cs">
+      <DependentUpon>201704041246589_req.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051947442_adding more days.cs" />
+    <Compile Include="Migrations\201704051947442_adding more days.Designer.cs">
+      <DependentUpon>201704051947442_adding more days.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704052154029_change model.cs" />
+    <Compile Include="Migrations\201704052154029_change model.Designer.cs">
+      <DependentUpon>201704052154029_change model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704052200370_change modesl.cs" />
+    <Compile Include="Migrations\201704052200370_change modesl.Designer.cs">
+      <DependentUpon>201704052200370_change modesl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704052208357_change modesl2.cs" />
+    <Compile Include="Migrations\201704052208357_change modesl2.Designer.cs">
+      <DependentUpon>201704052208357_change modesl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704052236589_change modesvgfl3.cs" />
+    <Compile Include="Migrations\201704052236589_change modesvgfl3.Designer.cs">
+      <DependentUpon>201704052236589_change modesvgfl3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704052238011_change modesvgflvb3.cs" />
+    <Compile Include="Migrations\201704052238011_change modesvgflvb3.Designer.cs">
+      <DependentUpon>201704052238011_change modesvgflvb3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -147,6 +179,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703261706358_Correction on daily schedules2.resx">
       <DependentUpon>201703261706358_Correction on daily schedules2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041237169_populating days table.resx">
+      <DependentUpon>201704041237169_populating days table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704041246589_req.resx">
+      <DependentUpon>201704041246589_req.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051947442_adding more days.resx">
+      <DependentUpon>201704051947442_adding more days.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704052154029_change model.resx">
+      <DependentUpon>201704052154029_change model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704052200370_change modesl.resx">
+      <DependentUpon>201704052200370_change modesl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704052208357_change modesl2.resx">
+      <DependentUpon>201704052208357_change modesl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704052236589_change modesvgfl3.resx">
+      <DependentUpon>201704052236589_change modesvgfl3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704052238011_change modesvgflvb3.resx">
+      <DependentUpon>201704052238011_change modesvgflvb3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

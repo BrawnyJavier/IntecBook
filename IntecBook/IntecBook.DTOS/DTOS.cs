@@ -9,9 +9,13 @@ namespace IntecBook.DTOS
     public class StudentSubjectsDTO
     {
         public int Id { get; set; }
-        public int user_id { get; set; }
-        public int subject_id { get; set; }
-        public int DailySchedule_id { get; set; }
+        public DateTime StartHour { get; set; }
+        public DateTime EndHour { get; set; }
+        public int DayId { get; set; }
+        public int TrimestreId { get; set; }
+        public int studentID { get; set; }
+        public int subjectID { get; set;}
         //public List<Notes> Notes { get; set; }
     }
+
 }

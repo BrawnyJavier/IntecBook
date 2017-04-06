@@ -13,7 +13,8 @@ namespace WebClient.Controllers.API
     public class TrimestresController : ApiController
     {
         // GET: api/Subjects
-        public IEnumerable<object> Get()
+        [HttpGet]
+        public IEnumerable<object> GetTrimestres()
         {
             using (var _context = new IntecBookContext())
             {
@@ -30,7 +31,8 @@ namespace WebClient.Controllers.API
             }
         }
         // GET: api/Trimestres/5
-        public object Get(int id)
+        [HttpGet]
+        public object GetTrimestreById(int id)
         {
             //using (var _context = new IntecBookContext())
             //{
@@ -39,9 +41,44 @@ namespace WebClient.Controllers.API
             //}
             return Thread.CurrentPrincipal.Identity;
         }
+        [HttpGet]
+        public IEnumerable<object> GetTrimestreSchedule(int id)
+        {
+            try
+            {
+                using (var context = new IntecBookContext())
+                {
 
+                    var QueryResult = (
+                        from schedules in context.Schedule
+                        join dailyschedule in context.DailySchedules
+                        on schedules.Id equals dailyschedule.Schedule.Id
+                        join studentsubjects in context.StudentSubjects
+                        on dailyschedule.Id equals studentsubjects.Schedule.Id
+                        join subjects in context.Subject
+                        on studentsubjects.subject.Id equals subjects.Id
+                        where schedules.Id == id
+                        select new
+                        {
+                            Trimestre = schedules.Trimestre + " año:" + schedules.Year,
+                            //StartHour = dailyschedule.StartHour.Hour,
+                            //EndHour = dailyschedule.EndHour.Hour,
+                            Horario = dailyschedule.StartHour.Hour+"/"+ dailyschedule.EndHour.Hour,
+                            Asignatura = subjects.Name,
+                            Creditos = subjects.Creditos
+
+                        }).ToList();
+                    return QueryResult;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
         // POST: api/Subjects
-        public object Post([FromBody]Schedule value)
+        [HttpPost]
+        public object CreateTrimestre([FromBody]Schedule value)
         {
             try
             {
@@ -59,7 +96,8 @@ namespace WebClient.Controllers.API
         }
 
         // PUT: api/Subjects/5
-        public void Put(int id, [FromBody]Schedule value)
+        [HttpPut]
+        public void UpdateTrimestre(int id, [FromBody]Schedule value)
         {
             using (var _context = new IntecBookContext())
             {
@@ -70,7 +108,8 @@ namespace WebClient.Controllers.API
             }
         }
         // DELETE: api/Subjects/5
-        public object Delete(int id)
+        [HttpDelete]
+        public object DeleteTrimestre(int id)
         {
             using (var _context = new IntecBookContext())
             {
