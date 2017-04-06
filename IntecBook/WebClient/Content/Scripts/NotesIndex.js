@@ -1,8 +1,9 @@
 ﻿var oTable;
-function subjectClass() {
+function NotesClass() {
     this.id = "";
-    this.name = "";
-    this.creditos = "";
+    this.subject = "";
+    this.subjectId = "";
+    this.title = "";
     this.set = function (obj) {
         for (var key in obj) {
             this[key] = obj[key];
@@ -16,30 +17,31 @@ function subjectClass() {
         }
     }
 }
-var tempSubject = new subjectClass();
-function SubjectsLoad() {
+var tempNote = new NotesClass();
+function NotesLoad() {
     $(document).ready(function () {
-        $('#editBtn').hide();
+        $('#editBtn,#seeBtn').hide();
         $('#deleteBtn').hide();
         //var link = "http://localhost:60410/";
         oTable = $('#AsignaturasTable').DataTable({
             responsive: true,
             "ajax": {
-                "url": "/api/Subjects/GetSubjects",
+                "url": "/api/Notas/GetNotes/",
                 "dataType": 'json',
                 "type": "GET",
                 "dataSrc": ""
             },
             "columns": [
                 { "data": "id" },
-                { "data": "name" },
-                { "data": "creditos" },
+                { "data": "title" },
+               { "data": "subject" }
+           
             ]
         });
         $('#AsignaturasTable tbody').on('click', 'tr', function () {
             console.log(oTable.row(this).data());
-            tempSubject.set(oTable.row(this).data());
-            $('#deleteBtn').show();
+            tempNote.set(oTable.row(this).data());
+            $('#deleteBtn,#seeBtn,#seeBtn').show();
             $('#editBtn').show();
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
@@ -75,12 +77,12 @@ function SubjectsLoad() {
             $("#ConfirmDeleteBtn").attr("disabled", true);
             $.ajax({
                 type: "DELETE",
-                url: "api/Subjects/DeleteSubject/" + tempSubject.id,
+                url: "api/Subjects/DeleteSubject/" + tempNote.id,
                 contentType: "application/json",
                 success: function (data) {
                     $("#ConfirmDeleteBtn").attr("disabled", false);
                     oTable.ajax.reload();
-                    tempSubject.reset();
+                    tempNote.reset();
                     $('#delete').modal('toggle');
                 }
             });
@@ -96,21 +98,26 @@ function SubjectsLoad() {
                   };
             $.ajax({
                 type: "PUT",
-                url: "api/Subjects/UpdateSubject/" + tempSubject.id,
+                url: "api/Subjects/UpdateSubject/" + tempNote.id,
                 data: JSON.stringify(Asignatura),
                 contentType: "application/json",
                 success: function (data) {
                     $("#UpdateRegBtn").attr("disabled", false);
                     oTable.ajax.reload();
-                    tempSubject.reset();
+                    tempNote.reset();
                     $('#edit').modal('toggle');
                 }
             });
         });
         
         $(document).on("click", "#editBtn", function () {
-            $('#AsignaturaNameED').val(tempSubject.name);
-            $('#AsignaturaCreditosED').val(tempSubject.creditos);
+            $('#AsignaturaNameED').val(tempNote.name);
+            $('#AsignaturaCreditosED').val(tempNote.creditos);
+        });
+        $(document).on("click", "#seeBtn", function () {
+            $("#AjaxLoads").load("/Html/NotesDetail.html", function () {
+                NotesDetailLoad(tempNote.id);
+            });
         });
     });
 }

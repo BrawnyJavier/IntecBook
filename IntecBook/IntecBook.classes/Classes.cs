@@ -85,6 +85,7 @@ namespace IntecBook.classes
         public StudentSubjects Subject { get; set; }
         [Required]
         public string Title { get; set; }
+        public DateTime creationDate { get; set; }
         public string content { get; set; }
     }
 

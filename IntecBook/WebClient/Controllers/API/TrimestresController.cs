@@ -57,13 +57,15 @@ namespace WebClient.Controllers.API
                         on dailyschedule.Id equals studentsubjects.Schedule.Id
                         join subjects in context.Subject
                         on studentsubjects.subject.Id equals subjects.Id
+                        join days in context.Day
+                        on dailyschedule.Day.Id equals days.Id
                         where schedules.Id == id
                         select new
                         {
                             Trimestre = schedules.Trimestre + " año:" + schedules.Year,
                             //StartHour = dailyschedule.StartHour.Hour,
                             //EndHour = dailyschedule.EndHour.Hour,
-                            Horario = dailyschedule.StartHour.Hour+"/"+ dailyschedule.EndHour.Hour,
+                            Horario = days.Name+" "+ dailyschedule.StartHour.Hour+"/"+ dailyschedule.EndHour.Hour,
                             Asignatura = subjects.Name,
                             Creditos = subjects.Creditos
 

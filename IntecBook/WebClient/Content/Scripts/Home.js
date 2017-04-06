@@ -13,5 +13,10 @@
             MasterLoad();
         });
     });
+    $(document).on("click", "#NotesNav", function () {
+        $("#AjaxLoads").load("/Html/Notes.html", function () {
+            NotesLoad();
+        });
+    });
     
 });

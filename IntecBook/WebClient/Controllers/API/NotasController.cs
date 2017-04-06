@@ -12,31 +12,64 @@ namespace WebClient.Controllers.API
     public class NotasController : ApiController
     {
         // GET: api/Notas
-        public IEnumerable<object> Get()
+        [HttpGet]
+        public IEnumerable<object> GetNotes()
         {
             using (var _context = new IntecBookContext())
             {
-                return _context.Notes.ToList();
-            }      
+                var QueryResult = (
+                    from StudentSubject in _context.StudentSubjects
+                    join subject in _context.Subject
+                    on StudentSubject.subject.Id equals subject.Id
+                    join Notes in _context.Notes
+                    on StudentSubject.Id equals Notes.Subject.Id
+                    select new
+                    {
+                        id = Notes.Id,
+                        subject = subject.Name,
+                        subjectId = subject.Id,
+                        title = Notes.Title
+
+                    }).ToList();
+                return QueryResult;
+            }
         }                // GET: api/Notas/5
-        public object Get(int id)
+        [HttpGet]
+        public object GetNoteById(int id)
         {
             using (var _context = new IntecBookContext())
             {
-                return _context.Notes.Where(x => x.Id == id).FirstOrDefault();
+                var QueryResult = (
+                    from StudentSubject in _context.StudentSubjects
+                    join subject in _context.Subject
+                    on StudentSubject.subject.Id equals subject.Id
+                    join Notes in _context.Notes
+                    on StudentSubject.Id equals Notes.Subject.Id
+                    where Notes.Id ==id
+                    select new
+                    {
+                        id = Notes.Id,
+                        subject = subject.Name,
+                        subjectId = subject.Id,
+                        title = Notes.Title,
+                        date = Notes.creationDate.Day+"/"+Notes.creationDate.Month+"/"+Notes.creationDate.Year,
+                        content = Notes.content
+                    }).FirstOrDefault();
+                return QueryResult;
             }
         }
         // POST: api/Notas
-        public object Post([FromBody]Notes value)
+        [HttpPost]
+        public object CreateNote([FromBody]Notes value)
         {
             try
             {
                 using (var _context = new IntecBookContext())
                 {
-                   _context.Notes.Add(value);
+                    value.creationDate = DateTime.Now;
+                    _context.Notes.Add(value);
                     _context.SaveChanges();
                     return HttpStatusCode.OK;
-
                 }
             }
             catch (Exception)
@@ -45,13 +78,14 @@ namespace WebClient.Controllers.API
             }
         }
         // PUT: api/Notas/5
-        public object Put(int id, [FromBody]Notes value)
+        [HttpPut]
+        public object UpdateNote([FromBody]Notes value)
         {
             try
             {
-                using(var context = new IntecBookContext())
+                using (var context = new IntecBookContext())
                 {
-                    var NoteInDatabase = context.Notes.Where(x => x.Id == id).FirstOrDefault();
+                    var NoteInDatabase = context.Notes.Where(x => x.Id == value.Id).FirstOrDefault();
                     NoteInDatabase.content = value.content;
                     NoteInDatabase.Title = value.Title;
                     context.SaveChanges();
@@ -66,7 +100,8 @@ namespace WebClient.Controllers.API
         }
 
         // DELETE: api/Notas/5
-        public object Delete(int id)
+        [HttpDelete]
+        public object DeleteNote(int id)
         {
             try
             {
@@ -74,11 +109,12 @@ namespace WebClient.Controllers.API
                 {
                     contex.Notes.Remove(
                         contex.Notes.Where(x => x.Id == id).FirstOrDefault()
-                        );               
+                        );
                     return HttpStatusCode.OK;
                 }
 
-            }catch (Exception)
+            }
+            catch (Exception)
             {
                 return HttpStatusCode.NotFound;
             }

@@ -70,6 +70,9 @@ function MasterLoad() {
                 "url": "/api/Subjects/GetSubjects",
                 "dataType": 'json',
                 "type": "GET",
+                "paging":   false,
+                "ordering": false,
+                "info":     false,
                 "dataSrc": ""
             },
             "columns": [
@@ -105,6 +108,9 @@ function MasterLoad() {
                     "sDom": 'rt',
                     "dataSrc": "",
                     "sDom": 'rt',
+                    "paging":   false,
+                    "ordering": false,
+                    "info":     false,
                     "paging": false,
                     "ordering": true,
                     "info": false
@@ -196,6 +202,7 @@ function MasterLoad() {
                     console.log('OK');
                 }
             });
+                        StudentSubjectsTable.ajax.reload();
         });
         // Eliminar un registro 
         $(document).on("click", "#ConfirmDeleteBtnT", function () {
