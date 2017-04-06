@@ -53,7 +53,8 @@ namespace WebClient.Controllers.API
                         subjectId = subject.Id,
                         title = Notes.Title,
                         date = Notes.creationDate.Day+"/"+Notes.creationDate.Month+"/"+Notes.creationDate.Year,
-                        content = Notes.content
+                        content = Notes.content,
+                        subtitle=Notes.Subtitle
                     }).FirstOrDefault();
                 return QueryResult;
             }

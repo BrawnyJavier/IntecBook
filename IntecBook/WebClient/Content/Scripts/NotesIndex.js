@@ -35,7 +35,7 @@ function NotesLoad() {
                 { "data": "id" },
                 { "data": "title" },
                { "data": "subject" }
-           
+
             ]
         });
         $('#AsignaturasTable tbody').on('click', 'tr', function () {
@@ -49,7 +49,7 @@ function NotesLoad() {
             else {
                 oTable.$('tr.selected').removeClass('selected');
                 $(this).addClass('selected');
-                
+
             }
         });
         // Añadir un registro 
@@ -70,6 +70,12 @@ function NotesLoad() {
                     $("#saveButtn").attr("disabled", false);
                     oTable.ajax.reload();
                 }
+            });
+        });
+
+        $(document).on("click", "#createBtns", function () {
+            $("#AjaxLoads").load("/Html/NotesEditor.html", function () {
+                //SubjectsLoad();
             });
         });
         // Eliminar un registro 
@@ -109,7 +115,7 @@ function NotesLoad() {
                 }
             });
         });
-        
+
         $(document).on("click", "#editBtn", function () {
             $('#AsignaturaNameED').val(tempNote.name);
             $('#AsignaturaCreditosED').val(tempNote.creditos);

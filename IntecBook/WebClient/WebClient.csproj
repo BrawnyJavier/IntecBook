@@ -258,13 +258,17 @@
     <Content Include="Content\5673-200.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Scripts\NotesEditor.js" />
     <Content Include="Content\Scripts\NotesDetail.js" />
     <Content Include="Content\Scripts\Plugin\clockpicker\clockpicker.css" />
     <Content Include="Content\Scripts\Plugin\clockpicker\clockpicker.js" />
     <Content Include="Content\Scripts\Plugin\clockpicker\standalone.css" />
     <Content Include="Content\Scripts\NotesIndex.js" />
+    <Content Include="Content\Scripts\Plugin\notes\summernote.css" />
+    <Content Include="Content\Scripts\Plugin\notes\summernote.min.js" />
     <Content Include="Content\Scripts\Trimestres.js" />
     <Content Include="Content\tadatable.css" />
+    <Content Include="Html\NotesEditor.html" />
     <Content Include="Html\NotesDetail.html" />
     <Content Include="Html\Notes.html" />
     <Content Include="Html\Trimestres.html" />

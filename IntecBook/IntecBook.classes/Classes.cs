@@ -87,6 +87,7 @@ namespace IntecBook.classes
         public string Title { get; set; }
         public DateTime creationDate { get; set; }
         public string content { get; set; }
+        public string Subtitle { get; set; }
     }
 
 }

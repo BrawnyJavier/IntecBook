@@ -5,8 +5,9 @@ function NotesDetailLoad(id) {
             $.getJSON("api/Notas/GetNoteById/" + id, function (json) {
                 console.log(json); console.log(json.title);
                 $('#title').text(json.title);
-                $('#content').text(json.content);
-                
+                $('#content').html(json.content);
+                $('#date').text(json.date);
+                $('#subtitle').text(json.subtitle);   
             });
         }
     });
