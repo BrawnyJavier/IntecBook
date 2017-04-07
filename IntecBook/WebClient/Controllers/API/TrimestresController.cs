@@ -24,6 +24,7 @@ namespace WebClient.Controllers.API
                     {
                         Id = schedule.Id,
                         Trimestre = "Periodo #" + schedule.Trimestre + " del año " + schedule.Year,
+
                     }).ToList();
                 return data;
             }

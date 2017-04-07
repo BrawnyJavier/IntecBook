@@ -239,6 +239,7 @@
     <Compile Include="Controllers\API\StudentSubjectsController.cs" />
     <Compile Include="Controllers\API\SubjectsController.cs" />
     <Compile Include="Controllers\API\TrimestresController.cs" />
+    <Compile Include="Controllers\API\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -250,6 +251,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Services\BasicAuthAttribute.cs" />
+    <Compile Include="Services\IntecBookSecurity.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +261,8 @@
     <Content Include="Content\5673-200.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Scripts\Login.js" />
+    <Content Include="Content\Scripts\Main.js" />
     <Content Include="Content\Scripts\NotesEditor.js" />
     <Content Include="Content\Scripts\NotesDetail.js" />
     <Content Include="Content\Scripts\Plugin\clockpicker\clockpicker.css" />
@@ -266,11 +271,16 @@
     <Content Include="Content\Scripts\NotesIndex.js" />
     <Content Include="Content\Scripts\Plugin\notes\summernote.css" />
     <Content Include="Content\Scripts\Plugin\notes\summernote.min.js" />
+    <Content Include="Content\Scripts\SignUp.js" />
     <Content Include="Content\Scripts\Trimestres.js" />
     <Content Include="Content\tadatable.css" />
+    <Content Include="Html\Login.html" />
+    <Content Include="Html\Appmain.html" />
+    <Content Include="Html\main.html" />
     <Content Include="Html\NotesEditor.html" />
     <Content Include="Html\NotesDetail.html" />
     <Content Include="Html\Notes.html" />
+    <Content Include="Html\SignUp.html" />
     <Content Include="Html\Trimestres.html" />
     <Content Include="Html\Subjects.html" />
     <Content Include="Content\logo.png" />
@@ -1031,6 +1041,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\CSS\" />
+    <Folder Include="Content\JS\" />
     <Folder Include="Content\Template\email_templates\" />
     <Folder Include="Content\Template\font-awesome\" />
     <Folder Include="Content\Template\fonts\" />
@@ -1062,6 +1074,10 @@
     <ProjectReference Include="..\IntecBook.DTOS\IntecBook.DTOS.csproj">
       <Project>{259c4503-2b6a-490a-98dd-95c412154a11}</Project>
       <Name>IntecBook.DTOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{be2491a3-7743-4e8f-acbc-079a62f6a731}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

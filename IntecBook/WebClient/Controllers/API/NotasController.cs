@@ -114,9 +114,11 @@ namespace WebClient.Controllers.API
             {
                 using (var contex = new IntecBookContext())
                 {
+                    var noteindb = contex.Notes.Where(n => n.Id == id).FirstOrDefault();
                     contex.Notes.Remove(
-                        contex.Notes.Where(x => x.Id == id).FirstOrDefault()
+                      noteindb
                         );
+                    contex.SaveChanges();
                     return HttpStatusCode.OK;
                 }
 

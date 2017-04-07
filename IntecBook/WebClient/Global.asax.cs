@@ -19,5 +19,11 @@ namespace WebClient
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        void Session_Start(object sender, EventArgs e)
+        {
+            // Cuando inicie, redirigir a la pagina principal de carga
+            Response.Redirect("~/HTML/main.html");
+
+        }
     }
 }

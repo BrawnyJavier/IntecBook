@@ -34,16 +34,27 @@ namespace IntecBook.classes
         public List<DailySchedules> DaySchedule { get; set; }
 
     }
+    public class IntecBookStoredEmails
+    {
+        [Key]
+        public string EmailCode { get; set; }
+        public string Description { get; set; }
+        [Required]
+        public string Body { get; set; }
+        public string Subject { get; set; }
+    }
     public class User
     {
         public int Id { get; set; }
         public Major UserMajor { get; set; }
+        public string username { get; set; }
         public List<Schedule> Schedules { get; set; }
         public List<StudentSubjects> Subjects { get; set; }
-        public List<Notes> Notes { get; set; }
+        public List<Notes> Notes { get; set;} 
         public string Email { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public string password { get; set;}
         public string profilePic { get; set; }
     }
     public class DailySchedules

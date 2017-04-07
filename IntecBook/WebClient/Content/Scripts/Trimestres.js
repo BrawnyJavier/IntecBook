@@ -42,6 +42,9 @@ var tempPeriodo = new PeriodoClass();
 var tempSubject = new subjectClass();
 function MasterLoad() {
     $(document).ready(function () {
+        if (PeriodosTable) PeriodosTable.destroy();
+        if (AsignaturasTable) AsignaturasTable.destroy();
+        if (StudentSubjectsTable) StudentSubjectsTable.destroy();
         $('#addSubject').slideUp();
         $('.clockpicker').clockpicker();
         $('#editBtn,#seeRegs,#deleteBtnT,#AsignaturasTables').hide();
@@ -60,7 +63,6 @@ function MasterLoad() {
             },
             "columns": [
                 { "data": "id" },
-                   { "data": "year" },
                 { "data": "trimestre" }
             ]
         });
@@ -70,9 +72,9 @@ function MasterLoad() {
                 "url": "/api/Subjects/GetSubjects",
                 "dataType": 'json',
                 "type": "GET",
-                "paging":   false,
+                "paging": false,
                 "ordering": false,
-                "info":     false,
+                "info": false,
                 "dataSrc": ""
             },
             "columns": [
@@ -108,9 +110,9 @@ function MasterLoad() {
                     "sDom": 'rt',
                     "dataSrc": "",
                     "sDom": 'rt',
-                    "paging":   false,
+                    "paging": false,
                     "ordering": false,
-                    "info":     false,
+                    "info": false,
                     "paging": false,
                     "ordering": true,
                     "info": false
@@ -137,7 +139,7 @@ function MasterLoad() {
             }
         });
 
-        $.getJSON("api/StudentSubjects/GetDays", function (json) {
+        $.getJSON("/api/StudentSubjects/GetDays", function (json) {
             console.log(json);
             for (var key in json) {
                 if (json.hasOwnProperty(key)) {
@@ -198,11 +200,11 @@ function MasterLoad() {
                 contentType: "application/json",
                 success: function (data) {
                     //$("#saveButtn").attr("disabled", false);
-                    //PeriodosTable.ajax.reload();
+                    StudentSubjectsTable.ajax.reload();
                     console.log('OK');
                 }
             });
-                        StudentSubjectsTable.ajax.reload();
+            StudentSubjectsTable.ajax.reload();
         });
         // Eliminar un registro 
         $(document).on("click", "#ConfirmDeleteBtnT", function () {
