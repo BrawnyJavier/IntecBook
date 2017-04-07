@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using IntecBook.classes;
+using IntecBook.DTOS;
 using IntecBook.DataModel;
 
 namespace WebClient.Controllers.API
@@ -45,30 +46,35 @@ namespace WebClient.Controllers.API
                     on StudentSubject.subject.Id equals subject.Id
                     join Notes in _context.Notes
                     on StudentSubject.Id equals Notes.Subject.Id
-                    where Notes.Id ==id
+                    where Notes.Id == id
                     select new
                     {
                         id = Notes.Id,
                         subject = subject.Name,
                         subjectId = subject.Id,
                         title = Notes.Title,
-                        date = Notes.creationDate.Day+"/"+Notes.creationDate.Month+"/"+Notes.creationDate.Year,
+                        date = Notes.creationDate.Day + "/" + Notes.creationDate.Month + "/" + Notes.creationDate.Year,
                         content = Notes.content,
-                        subtitle=Notes.Subtitle
+                        subtitle = Notes.Subtitle
                     }).FirstOrDefault();
                 return QueryResult;
             }
         }
         // POST: api/Notas
         [HttpPost]
-        public object CreateNote([FromBody]Notes value)
+        public object CreateNote([FromBody]NoteDTO value)
         {
             try
             {
                 using (var _context = new IntecBookContext())
                 {
-                    value.creationDate = DateTime.Now;
-                    _context.Notes.Add(value);
+                    Notes Note = new Notes();
+                    Note.content = value.content;
+                    Note.creationDate = DateTime.Now;
+                    Note.Owner = _context.Users.Where(u => u.Id == value.ownerId).FirstOrDefault();
+                    Note.Subject = _context.StudentSubjects.Where(ss => ss.Id == value.StudentSubjectId).FirstOrDefault();
+                    Note.Title = value.title;
+                    _context.Notes.Add(Note);
                     _context.SaveChanges();
                     return HttpStatusCode.OK;
                 }

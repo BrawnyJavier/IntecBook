@@ -17,5 +17,14 @@ namespace IntecBook.DTOS
         public int subjectID { get; set;}
         //public List<Notes> Notes { get; set; }
     }
+    public class NoteDTO
+    {
+        public int id { get; set; }
+        public int StudentSubjectId { get; set; }
+        public string title { get; set; }
+        public string content { get; set; }
+        public DateTime creationDate { get; set; }
+        public int ownerId { get; set; }
+    }
 
 }

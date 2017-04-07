@@ -11,8 +11,36 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>
     <div class="row">
-        <h2>&nbsp;&nbsp;Titulo:</h2>
-        <div class="col-sm-12"><input type="text" class="form-control"></div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>&nbsp;&nbsp;Titulo:</h2>
+                <div class="row">
+                    <div class="col-sm-12"><input type="text" id="TitleInput" class="form-control"></div>
+                </div>
+            </div>
+            <div class="row center-block">
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <label>Trimestre</label>
+                        <select class="form-control m-b" style="width:100%" id="TrimestresSelect" name="daysSelect"></select>
+                    </div>
+
+                </div>
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <label>Asignatura</label>
+                        <select class="form-control m-b" style="width:100%" id="AsignaturasSelect" name="daysSelect"></select>
+                    </div>
+                </div>
+                <div class="col-lg-2" style="position:relative">
+                    <label> </label>
+                    <a style="position:relative;" id="submitNotebtn" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Añadir Apunte</a>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
     <div id="summernote"><p></p></div>
 </div>

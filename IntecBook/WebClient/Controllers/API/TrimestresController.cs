@@ -23,9 +23,7 @@ namespace WebClient.Controllers.API
                     schedule => new
                     {
                         Id = schedule.Id,
-                        Trimestre = schedule.Trimestre,
-                        Year = schedule.Year
-
+                        Trimestre = "Periodo #" + schedule.Trimestre + " del año " + schedule.Year,
                     }).ToList();
                 return data;
             }
@@ -65,8 +63,9 @@ namespace WebClient.Controllers.API
                             Trimestre = schedules.Trimestre + " año:" + schedules.Year,
                             //StartHour = dailyschedule.StartHour.Hour,
                             //EndHour = dailyschedule.EndHour.Hour,
-                            Horario = days.Name+" "+ dailyschedule.StartHour.Hour+"/"+ dailyschedule.EndHour.Hour,
+                            Horario = days.Name + " " + dailyschedule.StartHour.Hour + "/" + dailyschedule.EndHour.Hour,
                             Asignatura = subjects.Name,
+                            idAsignatura = studentsubjects.Id,
                             Creditos = subjects.Creditos
 
                         }).ToList();
